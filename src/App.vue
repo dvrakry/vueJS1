@@ -1,15 +1,6 @@
 <template>
-  <!-- 모달창 -->
-  <div class="black-bg" v-if="모달창열렸니 == true">
-    <div class="white-bg">
-      <img :src="원룸들[누른거].image">
-      <h4>{{원룸들[누른거].title}}</h4>
-      <p>{{원룸들[누른거].content}}</p>
-      <p>{{원룸들[누른거].price}} 원</p>
-      <button @click="모달창열렸니 = false">닫기</button>
-    </div>
-  </div>
-
+  
+  <Modal :원룸들 = "원룸들" :누른거 = "누른거" :모달창열렸니 = "모달창열렸니"/>
 
   
 
@@ -20,14 +11,15 @@
 
   <Discount/>
 
+  <Card :원룸들 = "원룸들"/>
 
-
-
-  <div v-for="(a,i) in 원룸들" :key="i">
+   <!-- <div v-for="(a,i) in 원룸들" :key="i">
     <img :src="원룸들[i].image" class="room-img">
     <h4 @click="모달창열렸니 = true; 누른거 = i">{{원룸들[i].title}}</h4>
     <p>{{원룸들[i].price}}원</p>
-  </div>
+  </div> -->
+  
+  
   <!-- 원룸들[i] = a -->
 
 
@@ -52,6 +44,8 @@
 
 import data from './assets/oneroom.js';
 import Discount from './Discount.vue';
+import Modal from './Modal.vue';
+import Card from './Card.vue';
 
 
 export default {
@@ -73,6 +67,8 @@ export default {
   },
   components: {
     Discount : Discount,
+    Modal : Modal,
+    Card : Card,
   }
 }
 </script>
