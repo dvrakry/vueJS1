@@ -1,6 +1,6 @@
 <template>
   
-  <Modal :원룸들 = "원룸들" :누른거 = "누른거" :모달창열렸니 = "모달창열렸니"/>
+  <Modal :원룸들 = "원룸들" :누른거 = "누른거" :모달창열렸니 = "모달창열렸니" @closeModal = "모달창열렸니 = false;"/>
 
   <div class="menu">
     <a v-for="작명 in 메뉴들" :key="작명">{{작명}}</a>
@@ -8,7 +8,7 @@
 
   <Discount/>
 
-  <Card  :원룸="원룸들[i]" v-for="(a,i) in 원룸들" :key="a"/>
+  <Card @openModal="모달창열렸니=true; 누른거 = $event" :원룸="원룸들[i]" v-for="(a,i) in 원룸들" :key="a"/>
   <!-- <Card  :원룸="원룸들[1]"/>
   <Card  :원룸="원룸들[2]"/>
   <Card  :원룸="원룸들[3]"/>
