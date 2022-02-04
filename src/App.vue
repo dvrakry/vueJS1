@@ -59,7 +59,7 @@ export default {
       모달창열렸니 : false,
       신고수 : [0,0,0],
       메뉴들 : ['Home', 'Shop', 'AbouT'],
-      products : ['전농동원룸', '천호동원룸', '마포구원룸'],
+      products : ['신설동원룸', '천호동원룸', '마포구원룸'],
     }
   },
   methods : {
