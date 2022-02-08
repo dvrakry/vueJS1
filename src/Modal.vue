@@ -37,6 +37,12 @@ export default {
         누른거 : Number,
         모달창열렸니 : Boolean,
         
+    },
+
+    updated(){
+      if(this.month == 2){
+        alert("2 입력됨")
+      }
     }
 }
 </script>

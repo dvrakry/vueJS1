@@ -1,12 +1,18 @@
 <template>
-  
-  <Modal :원룸들 = "원룸들" :누른거 = "누른거" :모달창열렸니 = "모달창열렸니" @closeModal = "모달창열렸니 = false;"/>
-
+  <!-- <div class="start" :class="{end : 모달창열렸니}"> 일반적인css -->
+    <transition name="fade">
+      <Modal :원룸들 = "원룸들" :누른거 = "누른거" :모달창열렸니 = "모달창열렸니" @closeModal = "모달창열렸니 = false;"/>
+    </transition>
+  <!-- </div> -->
   <div class="menu">
     <a v-for="작명 in 메뉴들" :key="작명">{{작명}}</a>
   </div>
 
-  <Discount/>
+
+  <Discount v-if="showDiscount == true"/>
+
+  <button @click="priceSort">가격순정렬</button>
+  <button @click="sortBack">되돌리기</button>
 
   <Card @openModal="모달창열렸니=true; 누른거=$event" :원룸="원룸들[i]" v-for="(a,i) in 원룸들" :key="a"/>
   <!-- <Card  :원룸="원룸들[1]"/>
@@ -50,11 +56,14 @@ import Modal from './Modal.vue';
 import Card from './Card.vue';
 
 
+
 export default {
   name: 'App',
   data(){
     return {
+      showDiscount : true,
       누른거 : 0,
+      원룸들오리지널 : [...data],
       원룸들 : data,
       모달창열렸니 : false,
       신고수 : [0,0,0],
@@ -65,8 +74,19 @@ export default {
   methods : {
     increase(){
       this.신고수 += 1
+    },
+    priceSort(){
+      this.원룸들.sort(function(a,b){
+        return a.price - b.price;
+      })
+    },
+    sortBack(){
+      this.원룸들 = [...this.원룸들오리지널];
     }
   },
+
+
+
   components: {
     Discount : Discount,
     Modal : Modal,
@@ -117,5 +137,25 @@ export default {
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
+}
+
+.start{
+  opacity: 0;
+  transition: all 1s;
+}
+
+.end {
+  opacity: 1;
+}
+
+/* 애니메이션 */
+.fade-enter-from{
+  opacity: 0;
+}
+.fade-enter-active{
+  transition: all 1s;
+}
+.fade-enter-to{
+  opacity: 1;
 }
 </style>
